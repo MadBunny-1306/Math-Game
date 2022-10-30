@@ -33,23 +33,41 @@ document.getElementById("startreset").onclick = function () {
     //     start countdown
     startCountdown();
   }
+  //      generate new q&a
+  generateQA();
 };
-//        timeleft?
-//          yes - continue
-//          no - gameover
-
-//      generate new q&a
-generateQA();
 
 //if we click on answer box
-//  if we are playing
-//    correct?
-//      yes
-//        increase the score by one
-//        show correct box for 1s
-//        generate new q&a
-//      no
-//        show try again for 1s
+for (i = 1; i < 5; i++) {
+  document.getElementById("box" + i).onclick = function () {
+    //  if we are playing
+    if (playing == true) {
+      //    correct?
+      if (this.innerHTML == correctAnswer) {
+        //      yes
+        //        increase the score by 1
+        score++;
+        document.getElementById("scorevalue").innerHTML = score;
+        //      hide wrong box and  show correct box for 1s
+        hide("wrong");
+        show("correct");
+        setTimeout(function () {
+          hide("correct");
+        }, 1000);
+
+        //        generate new q&a
+        generateQA();
+      } else {
+        // wrong answer
+        hide("correct");
+        show("wrong");
+        setTimeout(function () {
+          hide("wrong");
+        }, 1000);
+      }
+    }
+  };
+}
 
 // functions
 // start counter
