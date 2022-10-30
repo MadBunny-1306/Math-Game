@@ -103,7 +103,9 @@ function generateQA() {
   document.getElementById("box" + correctPosition).innerHTML = correctAnswer; //fill one box with correct answer
 
   // fill other boxes with wrong answers
+
   var answers = [correctAnswer];
+  // ovo je array, i sve sto se napise u [] dobice svoj index po redu, ono sto je na prvom mestu ima index 0, sledece je index 1 itd.
 
   for (i = 1; i < 5; i++) {
     if (i != correctPosition) {
@@ -112,10 +114,11 @@ function generateQA() {
         wrongAnswer =
           (1 + Math.round(9 * Math.random())) *
           (1 + Math.round(9 * Math.random()));
-      } while (wrongAnswer == correctAnswer);
+      } while (answers.indexOf(wrongAnswer) > -1);
       //wrong answer
 
       document.getElementById("box" + i).innerHTML = wrongAnswer;
+      answers.push(wrongAnswer);
     }
   }
 }
